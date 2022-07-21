@@ -60,3 +60,4 @@ if __name__ == "__main__":
         futures = [executor.submit(cmd.handler, cmd.params) for cmd in cmds]
 
     subprocess.call("check_outputs")
+    subprocess.call("parse_brew_upgrade")
