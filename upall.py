@@ -61,3 +61,5 @@ if __name__ == "__main__":
 
     subprocess.call("check_outputs_py")
     subprocess.call("parse_brew_upgrade")
+
+# AUTOBIN: upall
