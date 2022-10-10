@@ -6,8 +6,6 @@ import pathlib
 import subprocess
 import typing
 
-VIM_BUNDLE = pathlib.Path("~/.vim/bundle/").expanduser()
-
 
 @dataclasses.dataclass
 class Command:
@@ -28,10 +26,6 @@ def validate(func):
     def inner(cwd):
         if not (cwd / ".git").exists():
             return
-        if cwd.stem in {
-            "YouCompleteMe",  # This requires running install, so we'll skip updating it
-        }:
-            return
         return func(cwd)
 
     return inner
@@ -49,7 +43,7 @@ def _run_cmd_list(cmd: list):
 
 
 if __name__ == "__main__":
-    cmds = [Command(_run_git_pull, cwd) for cwd in sorted(VIM_BUNDLE.iterdir())] + [
+    cmds = [
         Command(_run_cmd_list, ["brew", "upgrade"]),
         Command(_run_cmd_list, ["brew", "cleanup"]),
         Command(_run_cmd_list, ["brew", "doctor"]),
