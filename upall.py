@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import concurrent.futures
 import dataclasses
-import functools
 import pathlib
 import subprocess
 import typing
@@ -19,22 +18,6 @@ def to_stdout_cache(route, content):
     target.parent.mkdir(exist_ok=True)
     with open(target, "w") as f:
         f.write(content.decode())
-
-
-def validate(func):
-    @functools.wraps(func)
-    def inner(cwd):
-        if not (cwd / ".git").exists():
-            return
-        return func(cwd)
-
-    return inner
-
-
-@validate
-def _run_git_pull(cwd: pathlib.Path):
-    result = subprocess.check_output(["git", "pull"], cwd=cwd, stderr=subprocess.STDOUT)
-    to_stdout_cache(cwd.name + ".txt", result)
 
 
 def _run_cmd_list(cmd: list):
