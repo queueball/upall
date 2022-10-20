@@ -1,6 +1,6 @@
 # Overview
 
-`upall` is a simple script to keep a bunch of repos, global python libraries, and brew formulaes up to date
+`upall` is a simple script to keep global python libraries, and brew formulaes up to date
 
 # Notes
 
