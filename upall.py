@@ -30,7 +30,6 @@ if __name__ == "__main__":
         Command(_run_cmd_list, ["brew", "upgrade"]),
         Command(_run_cmd_list, ["brew", "cleanup"]),
         Command(_run_cmd_list, ["brew", "doctor"]),
-        Command(subprocess.call, "pydeps"),
     ]
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
